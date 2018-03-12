@@ -22,9 +22,8 @@ namespace jessefreeman.utools
 {
     public class StatsManager : MonoBehaviour
     {
+        
         public Dictionary<string, float> stats = new Dictionary<string, float>();
-
-        private float timeElapsed;
 
         // Use this for initialization
         private void Start()
@@ -34,7 +33,7 @@ namespace jessefreeman.utools
 
         private void Update()
         {
-            timeElapsed += Time.deltaTime;
+            UpdateStatValue("Time", Time.deltaTime);
         }
 
         public void Reset()
@@ -70,15 +69,5 @@ namespace jessefreeman.utools
             if (!stats.ContainsKey(stat)) stats.Add(stat, 0);
         }
 
-        public float GetTimeElapsed()
-        {
-            return timeElapsed;
-        }
-
-        public static string TimeElapsedToString(float value)
-        {
-            var t = TimeSpan.FromSeconds(value);
-            return string.Format("{0:D2}:{1:D2}", t.Minutes, t.Seconds);
-        }
     }
 }
